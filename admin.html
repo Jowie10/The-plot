@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Post Event | The Plot UG Admin</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-top">
+            <div>
+                <h1 class="logo">THE PLOT UG</h1>
+                <p class="subtitle">Admin Dashboard - Post New Event</p>
+            </div>
+            <a href="index.html" class="admin-link home-link"><i class="fas fa-home"></i> <span>Home</span></a>
+        </div>
+    </header>
+
+    <main class="form-container">
+        <!-- Quick Templates -->
+        <div class="template-section">
+            <h3>🎨 Quick Templates <span class="template-sub">(Click to auto-fill)</span></h3>
+            <div class="template-grid">
+                <button class="template-btn" onclick="loadTemplate('club')">
+                    <i class="fas fa-music"></i> Club Night
+                </button>
+                <button class="template-btn" onclick="loadTemplate('brunch')">
+                    <i class="fas fa-coffee"></i> Sunday Brunch
+                </button>
+                <button class="template-btn" onclick="loadTemplate('concert')">
+                    <i class="fas fa-guitar"></i> Concert
+                </button>
+                <button class="template-btn" onclick="loadTemplate('family')">
+                    <i class="fas fa-child"></i> Family Day
+                </button>
+                <button class="template-btn" onclick="loadTemplate('breakfast')">
+                    <i class="fas fa-bread-slice"></i> Breakfast
+                </button>
+                <button class="template-btn" onclick="loadTemplate('afterparty')">
+                    <i class="fas fa-moon"></i> After Party
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Form -->
+        <form id="eventForm" class="admin-form">
+            <h2>Event Details <i class="fas fa-calendar-alt"></i></h2>
+            
+            <!-- Publish Checklist -->
+            <div class="publish-checklist">
+                <h4>✅ Pre-Publish Checklist</h4>
+                <div class="checklist-items">
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" onchange="updateChecklist()">
+                        <span>High-quality poster (min 800x1000px)</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" onchange="updateChecklist()">
+                        <span>All activities/lineup listed</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" onchange="updateChecklist()">
+                        <span>Contact information included</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" onchange="updateChecklist()">
+                        <span>Price clearly stated</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" onchange="updateChecklist()">
+                        <span>Date and time confirmed</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" onchange="updateChecklist()">
+                        <span>Ticket link working (if applicable)</span>
+                    </label>
+                </div>
+                <progress value="0" max="6" id="checklistProgress" class="checklist-progress"></progress>
+                <p class="checklist-message" id="checklistMessage">Complete checklist to publish</p>
+            </div>
+
+            <div class="form-grid">
+                <div class="input-group">
+                    <label><i class="fas fa-heading"></i> Event Title *</label>
+                    <input type="text" id="eventTitle" required placeholder="e.g. Smooth Jazz Night at Sky Lounge">
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-tag"></i> Category *</label>
+                    <select id="eventCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="Breakfast">🍳 Breakfast</option>
+                        <option value="Lunch">🍝 Lunch</option>
+                        <option value="Dinner">🍽️ Dinner</option>
+                        <option value="Brunch">🥂 Brunch</option>
+                        <option value="Band Night">🎸 Band Night</option>
+                        <option value="Nightlife">🌙 Nightlife</option>
+                        <option value="Live Music">🎤 Live Music</option>
+                        <option value="Family">👨‍👩‍👧 Family Activities</option>
+                        <option value="Kids">🧸 Kids Activities</option>
+                        <option value="Club">🎵 Club Hosting</option>
+                        <option value="After Party">🔥 After Party</option>
+                        <option value="Pool Party">🏊 Pool Party</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-map-marker-alt"></i> Venue *</label>
+                    <input type="text" id="eventVenue" required placeholder="e.g. Sky Lounge, Kololo">
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-map-pin"></i> Location *</label>
+                    <select id="eventLocation" required>
+                        <option value="">Select Location</option>
+                        <option value="Kololo">Kololo</option>
+                        <option value="Kabalagala">Kabalagala</option>
+                        <option value="Bugolobi">Bugolobi</option>
+                        <option value="Muyenga">Muyenga</option>
+                        <option value="Naguru">Naguru</option>
+                        <option value="Ntinda">Ntinda</option>
+                        <option value="Bukoto">Bukoto</option>
+                        <option value="Entebbe">Entebbe</option>
+                        <option value="Munyonyo">Munyonyo</option>
+                        <option value="Kampala Central">Kampala Central</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-calendar"></i> Date *</label>
+                    <input type="date" id="eventDate" required>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-clock"></i> Time *</label>
+                    <input type="text" id="eventTime" required placeholder="e.g. 8:00 PM - Late">
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-tag"></i> Price (UGX) *</label>
+                    <input type="text" id="eventPrice" required placeholder="e.g. 50,000 or Free">
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-star"></i> Featured Event?</label>
+                    <select id="eventFeatured">
+                        <option value="false">Regular Event</option>
+                        <option value="true">🌟 Featured (Premium)</option>
+                    </select>
+                </div>
+
+                <div class="input-group full-width">
+                    <label><i class="fas fa-list"></i> Activities/Lineup *</label>
+                    <textarea id="eventActivities" rows="4" required placeholder="List activities, performers, DJs, etc. (One per line)"></textarea>
+                </div>
+
+                <div class="input-group full-width">
+                    <label><i class="fas fa-phone"></i> Contact Information</label>
+                    <input type="text" id="eventContact" placeholder="Phone number or social media handle">
+                </div>
+
+                <div class="input-group full-width">
+                    <label><i class="fas fa-link"></i> Ticket/Booking Link</label>
+                    <input type="url" id="eventTicketLink" placeholder="https://">
+                </div>
+
+                <div class="input-group full-width">
+                    <label><i class="fas fa-image"></i> Poster URL *</label>
+                    <input type="url" id="eventPoster" required placeholder="Paste image link here">
+                    <small class="help-text">Use high-quality images (recommended: 800x1000px)</small>
+                </div>
+
+                <div class="input-group full-width">
+                    <label><i class="fas fa-align-left"></i> Additional Info</label>
+                    <textarea id="eventAdditional" rows="3" placeholder="Dress code, age restriction, special guests, parking info..."></textarea>
+                </div>
+
+                <div class="input-group full-width">
+                    <label><i class="fas fa-ticket-alt"></i> Promo Code (Optional)</label>
+                    <input type="text" id="eventPromoCode" placeholder="e.g. EARLYBIRD20">
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button type="submit" class="submit-btn" id="publishBtn">
+                    <i class="fas fa-paper-plane"></i> Publish Event
+                </button>
+                <a href="index.html" class="cancel-btn"><i class="fas fa-times"></i> Cancel</a>
+                <button type="button" class="save-draft-btn" onclick="saveDraft()">
+                    <i class="fas fa-save"></i> Save Draft
+                </button>
+            </div>
+        </form>
+
+        <!-- Live Preview Section -->
+        <div class="preview-section">
+            <h3>Live Preview <i class="fas fa-eye"></i></h3>
+            <div id="livePreview" class="preview-card"></div>
+        </div>
+
+        <!-- Drafts Section -->
+        <div class="drafts-section" id="draftsSection" style="display:none;">
+            <h3>📝 Saved Drafts</h3>
+            <div id="draftsList" class="drafts-list"></div>
+        </div>
+
+        <!-- Bulk Upload Section -->
+        <div class="bulk-upload-section">
+            <h3>📦 Bulk Upload Events</h3>
+            <div class="upload-area" onclick="document.getElementById('csvFile').click()">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Click to upload CSV file or drag and drop</p>
+                <small>Download <a href="#" onclick="downloadSampleCSV(event)">sample CSV template</a></small>
+            </div>
+            <input type="file" id="csvFile" accept=".csv" style="display:none" onchange="handleFileUpload(this)">
+        </div>
+
+        <!-- Analytics Dashboard -->
+        <div class="analytics-dashboard">
+            <h2>📊 Your Event Analytics</h2>
+            <div class="stats-grid" id="adminStats">
+                <div class="stat-card">
+                    <i class="fas fa-calendar-plus"></i>
+                    <div>
+                        <span class="stat-value" id="totalEvents">0</span>
+                        <span class="stat-label">Total Events</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-eye"></i>
+                    <div>
+                        <span class="stat-value" id="totalViews">0</span>
+                        <span class="stat-label">Total Views</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-heart"></i>
+                    <div>
+                        <span class="stat-value" id="totalSaves">0</span>
+                        <span class="stat-label">Saves</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-star"></i>
+                    <div>
+                        <span class="stat-value" id="featuredCount">0</span>
+                        <span class="stat-label">Featured</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>The Plot UG - Kampala Events</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-top">
+            <div>
+                <h1 class="logo">THE PLOT UG</h1>
+                <p class="subtitle">Kampala's #1 Party & Events Hub</p>
+            </div>
+            <div class="header-actions">
+                <button onclick="showLoginModal()" class="user-btn" id="userBtn">
+                    <i class="fas fa-user"></i> <span class="user-text">Sign In</span>
+                </button>
+                <a href="admin.html" class="admin-link"><i class="fas fa-plus"></i> <span class="admin-text">Post</span></a>
+            </div>
+        </div>
+        
+        <!-- Categories Navigation -->
+        <div class="category-nav">
+            <button class="chip active" data-category="all">All Events</button>
+            <button class="chip" data-category="Breakfast">🍳 Breakfast</button>
+            <button class="chip" data-category="Lunch">🍝 Lunch</button>
+            <button class="chip" data-category="Dinner">🍽️ Dinner</button>
+            <button class="chip" data-category="Brunch">🥂 Brunch</button>
+            <button class="chip" data-category="Band Night">🎸 Band Night</button>
+            <button class="chip" data-category="Nightlife">🌙 Nightlife</button>
+            <button class="chip" data-category="Live Music">🎤 Live Music</button>
+            <button class="chip" data-category="Family">👨‍👩‍👧 Family</button>
+            <button class="chip" data-category="Kids">🧸 Kids</button>
+            <button class="chip" data-category="Club">🎵 Club</button>
+            <button class="chip" data-category="After Party">🔥 After Party</button>
+            <button class="chip" data-category="Pool Party">🏊 Pool</button>
+        </div>
+
+        <!-- Search Section -->
+        <div class="search-section">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search events, venues, or artists...">
+                <button class="clear-search" onclick="clearSearch()" style="display:none;">✕</button>
+            </div>
+            
+            <div class="filter-bar">
+                <select id="priceFilter" class="filter-select" onchange="applyFilters()">
+                    <option value="">💰 All Prices</option>
+                    <option value="free">🆓 Free Events</option>
+                    <option value="under30k">📉 Under 30K UGX</option>
+                    <option value="30k-50k">📊 30K - 50K UGX</option>
+                    <option value="50k-100k">📈 50K - 100K UGX</option>
+                    <option value="over100k">💎 Over 100K UGX</option>
+                </select>
+                
+                <select id="dateFilter" class="filter-select" onchange="applyFilters()">
+                    <option value="">📅 Any Date</option>
+                    <option value="today">🔴 Today</option>
+                    <option value="tomorrow">⏰ Tomorrow</option>
+                    <option value="weekend">🎉 This Weekend</option>
+                    <option value="next7">📆 Next 7 Days</option>
+                </select>
+                
+                <button class="filter-btn" onclick="showLocationFilter()">
+                    <i class="fas fa-map-marker-alt"></i> <span id="locationText">All Kampala</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Featured Events Banner -->
+        <div class="featured-banner">
+            <i class="fas fa-fire"></i>
+            <span>🔥 Hot Events This Weekend</span>
+            <span class="event-count" id="eventCount"></span>
+        </div>
+    </header>
+
+    <!-- Saved Events Toggle (shows when user has saved events) -->
+    <div class="saved-toggle" id="savedToggle" style="display:none;" onclick="showSavedEvents()">
+        <i class="fas fa-heart"></i>
+        <span>Saved Events (<span id="savedCount">0</span>)</span>
+    </div>
+
+    <!-- Main Events Grid -->
+    <main id="vibeFeed" class="vibe-grid"></main>
+
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loadingSpinner">
+        <div class="spinner"></div>
+        <p>Loading events...</p>
+    </div>
+
+    <!-- User Modal (Login/Signup) -->
+    <div id="userModal" class="modal user-modal" style="display:none;">
+        <div class="modal-content user-modal-content">
+            <span class="close-modal" onclick="closeUserModal()">&times;</span>
+            <h2><i class="fas fa-user-circle"></i> Welcome to The Plot UG</h2>
+            
+            <div class="user-tabs">
+                <button class="tab-btn active" onclick="switchTab('login')">Login</button>
+                <button class="tab-btn" onclick="switchTab('signup')">Sign Up</button>
+            </div>
+            
+            <!-- Login Form -->
+            <div id="loginForm" class="user-form active">
+                <div class="input-group">
+                    <label><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="loginEmail" placeholder="your@email.com">
+                </div>
+                <div class="input-group">
+                    <label><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••">
+                </div>
+                <button class="user-submit" onclick="loginUser()">Login</button>
+                <p class="forgot-password" onclick="showForgotPassword()">Forgot Password?</p>
+            </div>
+            
+            <!-- Signup Form -->
+            <div id="signupForm" class="user-form">
+                <div class="input-group">
+                    <label><i class="fas fa-user"></i> Full Name</label>
+                    <input type="text" id="signupName" placeholder="John Doe">
+                </div>
+                <div class="input-group">
+                    <label><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="signupEmail" placeholder="your@email.com">
+                </div>
+                <div class="input-group">
+                    <label><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="signupPassword" placeholder="••••••••">
+                </div>
+                <div class="input-group">
+                    <label><i class="fas fa-phone"></i> Phone Number</label>
+                    <input type="tel" id="signupPhone" placeholder="07XX XXX XXX">
+                </div>
+                <button class="user-submit" onclick="signupUser()">Create Account</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Location Filter Modal -->
+    <div id="locationModal" class="modal location-modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeLocationModal()">&times;</span>
+            <h3><i class="fas fa-map-marker-alt"></i> Select Location</h3>
+            <div class="location-grid">
+                <button class="location-option" onclick="selectLocation('all')">📍 All Kampala</button>
+                <button class="location-option" onclick="selectLocation('kololo')">📍 Kololo</button>
+                <button class="location-option" onclick="selectLocation('kabalagala')">📍 Kabalagala</button>
+                <button class="location-option" onclick="selectLocation('bugolobi')">📍 Bugolobi</button>
+                <button class="location-option" onclick="selectLocation('muyenga')">📍 Muyenga</button>
+                <button class="location-option" onclick="selectLocation('naguru')">📍 Naguru</button>
+                <button class="location-option" onclick="selectLocation('ntinda')">📍 Ntinda</button>
+                <button class="location-option" onclick="selectLocation('bukoto')">📍 Bukoto</button>
+                <button class="location-option" onclick="selectLocation('entebbe')">📍 Entebbe</button>
+                <button class="location-option" onclick="selectLocation('munyonyo')">📍 Munyonyo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Detail Modal -->
+    <div id="eventModal" class="modal" style="display:none;">
+        <div class="modal-content event-modal-content">
+            <span class="close-modal" onclick="closeEventModal()">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Share Menu -->
+    <div id="shareMenu" class="share-menu" style="display:none;"></div>
+
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" onclick="scrollToTop()" id="scrollTop" style="display:none;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1100 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #f9fafb;
+    color: #111827;
+}
+
+/* Header Styling */
+.main-header {
+    position: sticky;
+    top: 0;
+    background: white;
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    z-index: 100;
+}
+
+.logo {
+    color: #ea580c; /* Orange-600 */
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+/* Navigation Chips */
+.category-nav {
+    display: flex;
+    overflow-x: auto;
+    padding: 1rem;
+    gap: 0.75rem;
+}
+
+.category-nav::-webkit-scrollbar {
+    display: none; /* Hides scrollbar for a clean mobile look */
+}
+
+.chip {
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    font-size: 0.875rem;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.chip.active {
+    background: #ea580c;
+    color: white;
+    border-color: #ea580c;
+}
+
+/* The Grid */
+.vibe-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile */
+    gap: 1rem;
+    padding: 1rem;
+}
+
+/* Card Styling */
+.card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #f3f4f6;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.poster-container {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    background: #e5e7eb;
+}
+
+.poster-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tag {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 10px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    backdrop-filter: blur(4px);
+}
+
+.card-details {
+    padding: 0.75rem;
+}
+
+.card-details h3 {
+    font-size: 0.875rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.price {
+    color: #ea580c;
+    font-weight: 800;
+    font-size: 0.75rem;
+    margin-top: 4px;
+}
+
+.location {
+    color: #9ca3af;
+    font-size: 10px;
+    margin-top: 4px;
+}
+
+/* Admin Form Styles */
+.form-container {
+    padding: 2rem 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.admin-form {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.input-group {
+    margin-bottom: 1.25rem;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #374151;
+}
+
+.input-group input, 
+.input-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: #ea580c;
+    box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.1);
+}
+
+.submit-btn {
+    width: 100%;
+    background: #ea580c;
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.submit-btn:hover {
+    background: #c2410c;
+}
+
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+    text-decoration: none;
+}
+
+/* Previous styles remain, add these new styles */
+
+/* Header Top */
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.admin-link {
+    background: #ea580c;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.admin-link i {
+    font-size: 0.875rem;
+}
+
+/* Featured Banner */
+.featured-banner {
+    background: linear-gradient(135deg, #ea580c, #c2410c);
+    color: white;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.9; }
+    100% { opacity: 1; }
+}
+
+/* Card Enhancements */
+.card {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.poster-container {
+    position: relative;
+}
+
+.date-tag {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #ea580c;
+    color: white;
+    font-size: 10px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.venue, .time {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.venue i, .time i {
+    font-size: 0.7rem;
+    color: #ea580c;
+}
+
+.activities-preview {
+    font-size: 0.7rem;
+    color: #9ca3af;
+    display: block;
+    margin-top: 4px;
+}
+
+.card-footer {
+    margin-top: 8px;
+    border-top: 1px solid #f3f4f6;
+    padding-top: 8px;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 800px;
+    position: relative;
+    animation: slideIn 0.3s;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #6b7280;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: #ea580c;
+}
+
+/* Event Detail Styles */
+.event-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.detail-poster img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.detail-info h2 {
+    color: #111827;
+    margin-bottom: 10px;
+}
+
+.badge {
+    background: #ea580c;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    display: inline-block;
+}
+
+.detail-section {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f9fafb;
+    border-radius: 12px;
+}
+
+.detail-section h4 {
+    color: #374151;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.detail-section h4 i {
+    color: #ea580c;
+}
+
+.detail-section p {
+    margin: 8px 0;
+    color: #4b5563;
+}
+
+.detail-section i {
+    margin-right: 8px;
+    color: #ea580c;
+}
+
+.detail-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.ticket-btn, .share-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.ticket-btn {
+    background: #ea580c;
+    color: white;
+}
+
+.share-btn {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+.ticket-btn:hover {
+    background: #c2410c;
+}
+
+.share-btn:hover {
+    background: #d1d5db;
+}
+
+/* No Events State */
+.no-events {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 60px 20px;
+    color: #6b7280;
+}
+
+.no-events i {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #ea580c;
+}
+
+.add-event-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background: #ea580c;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+/* Admin Form Enhancements */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.full-width {
+    grid-column: 1/-1;
+}
+
+.help-text {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 4px;
+    display: block;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.cancel-btn {
+    flex: 1;
+    padding: 1rem;
+    background: #e5e7eb;
+    color: #374151;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 800;
+    text-align: center;
+    transition: background 0.2s;
+}
+
+.cancel-btn:hover {
+    background: #d1d5db;
+}
+
+/* Preview Section */
+.preview-section {
+    margin-top: 30px;
+    padding: 20px;
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+}
+
+.preview-section h3 {
+    margin-bottom: 15px;
+    color: #374151;
+}
+
+.preview-card {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .modal-content {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+    
+    .event-detail {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .detail-actions {
+        flex-direction: column;
+    }
+}
+
+/* Loading Animation */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.loading {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+}
+/* Add to your existing style.css */
+
+/* Mobile-first base styles */
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Improved touch targets for mobile */
+button, 
+.chip, 
+.admin-link,
+.submit-btn,
+.cancel-btn,
+.popup-btn,
+input[type="submit"] {
+    min-height: 44px; /* Apple's recommended minimum touch target */
+    min-width: 44px;
+    padding: 12px 16px;
+}
+
+/* Notification styles */
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 16px 24px;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 2000;
+    max-width: 90%;
+    width: auto;
+    animation: slideDown 0.3s ease;
+}
+
+.notification.success {
+    background: #10b981;
+    color: white;
+}
+
+.notification.error {
+    background: #ef4444;
+    color: white;
+}
+
+.notification i {
+    font-size: 20px;
+}
+
+.notification.fade-out {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+@keyframes slideDown {
+    from {
+        top: -100px;
+        opacity: 0;
+    }
+    to {
+        top: 20px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Success Popup */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+.success-popup {
+    background: white;
+    border-radius: 24px;
+    max-width: 400px;
+    width: 100%;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.success-popup.show {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.popup-content {
+    padding: 32px 24px;
+    text-align: center;
+}
+
+.popup-icon {
+    font-size: 64px;
+    color: #10b981;
+    margin-bottom: 20px;
+    animation: bounce 0.5s ease;
+}
+
+.popup-icon i {
+    font-size: 64px;
+}
+
+.popup-content h2 {
+    font-size: 24px;
+    color: #111827;
+    margin-bottom: 12px;
+}
+
+.popup-content p {
+    color: #6b7280;
+    margin-bottom: 24px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.popup-buttons {
+    display: flex;
+    gap: 12px;
+    flex-direction: column;
+}
+
+@media (min-width: 480px) {
+    .popup-buttons {
+        flex-direction: row;
+    }
+}
+
+.popup-btn {
+    flex: 1;
+    padding: 14px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.popup-btn.primary {
+    background: #ea580c;
+    color: white;
+}
+
+.popup-btn.primary:hover {
+    background: #c2410c;
+}
+
+.popup-btn.secondary {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.popup-btn.secondary:hover {
+    background: #e5e7eb;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Mobile-friendly form improvements */
+.form-container {
+    padding: 16px;
+    max-width: 100%;
+}
+
+.admin-form {
+    padding: 20px 16px;
+    margin: 0;
+}
+
+.input-group {
+    margin-bottom: 16px;
+}
+
+.input-group label {
+    font-size: 14px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.input-group input, 
+.input-group select,
+.input-group textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 14px 12px;
+    border-radius: 12px;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.input-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Improved category chips for mobile */
+.category-nav {
+    padding: 12px 16px;
+    gap: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin-bottom: 0;
+}
+
+.chip {
+    padding: 10px 18px;
+    font-size: 14px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Card grid improvements for mobile */
+.vibe-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 12px;
+}
+
+.card {
+    border-radius: 16px;
+    margin: 0;
+}
+
+.card-details {
+    padding: 12px 10px;
+}
+
+.card-details h3 {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.venue, .time {
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+.price {
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+/* Modal improvements for mobile */
+.modal-content {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    border-radius: 0;
+    padding: 0;
+    overflow-y: auto;
+}
+
+.event-detail {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.detail-poster {
+    width: 100%;
+    max-height: 50vh;
+    overflow: hidden;
+}
+
+.detail-poster img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.detail-info {
+    padding: 24px 20px;
+    padding-bottom: 40px;
+}
+
+.close-modal {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+}
+
+/* Header improvements for mobile */
+.main-header {
+    padding: 12px 16px;
+}
+
+.header-top {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo {
+    font-size: 1.25rem;
+    line-height: 1.2;
+}
+
+.subtitle {
+    font-size: 11px;
+}
+
+.admin-link {
+    padding: 8px 16px;
+    font-size: 13px;
+    min-height: 40px;
+    border-radius: 30px;
+}
+
+/* Featured banner mobile */
+.featured-banner {
+    padding: 10px 16px;
+    font-size: 13px;
+}
+
+/* No events state mobile */
+.no-events {
+    padding: 40px 20px;
+}
+
+.no-events i {
+    font-size: 48px;
+}
+
+.no-events p {
+    font-size: 16px;
+}
+
+/* Preview section mobile */
+.preview-section {
+    margin-top: 24px;
+    padding: 16px;
+}
+
+.preview-card {
+    max-width: 100%;
+}
+
+/* Form actions mobile */
+.form-actions {
+    flex-direction: column;
+    gap: 12px;
+}
+
+.submit-btn, .cancel-btn {
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    border-radius: 12px;
+}
+
+/* Tablet and small desktop adjustments */
+@media (min-width: 768px) {
+    .vibe-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 20px;
+    }
+    
+    .modal-content {
+        margin: 5% auto;
+        width: 90%;
+        max-width: 800px;
+        height: auto;
+        border-radius: 16px;
+    }
+    
+    .event-detail {
+        flex-direction: row;
+        min-height: auto;
+    }
+    
+    .detail-poster {
+        max-height: none;
+        width: 50%;
+    }
+    
+    .close-modal {
+        position: absolute;
+        background: white;
+        color: #6b7280;
+    }
+    
+    .form-actions {
+        flex-direction: row;
+    }
+    
+    .form-container {
+        max-width: 800px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .vibe-grid {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
+/* Improved touch scrolling */
+.vibe-grid, 
+.category-nav,
+.modal-content {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Loading states for mobile */
+.loading-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Fix for 100vh on mobile browsers */
+.vh-fix {
+    height: 100vh;
+    height: -webkit-fill-available;
+}
+
+/* Ensure buttons are tappable */
+button, 
+.chip, 
+.card,
+.admin-link,
+.close-modal,
+.popup-btn {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:active,
+.chip:active,
+.card:active {
+    opacity: 0.7;
+    transform: scale(0.98);
+}
+
+/* Safe area insets for modern mobile devices */
+@supports (padding: max(0px)) {
+    .main-header {
+        padding-left: max(16px, env(safe-area-inset-left));
+        padding-right: max(16px, env(safe-area-inset-right));
+        padding-top: max(12px, env(safe-area-inset-top));
+    }
+    
+    .modal-content {
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+    }
+}
